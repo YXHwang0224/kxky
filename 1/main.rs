@@ -64,6 +64,25 @@ fn main() {
             continue;
         }
 
+        print!("收到的命令和参数为：");
+        io::stdout().flush().unwrap();
+        for arg in args.iter() {
+            println!("{}", arg);
+        }
+
+        match args[0].as_str() {
+            "greet" => {
+                if args.len() < 2 {
+                    eprintln!("错误：未提供名字参数");
+                    continue;
+                }
+                println!("Hello, {}!", args[1]);
+            },
+            _ => {
+                eprintln!("错误：未知命令 '{}'", args[0]);
+            }
+        }
+
         print!("\r");
         io::stdout().flush().unwrap();
     }
