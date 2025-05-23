@@ -53,6 +53,17 @@ fn main() {
             continue;
         }
 
+        // Check for vim command
+        if args[0] == "vim" {
+            let result = Command::new("vim")
+                                .spawn();
+            match result {
+                Ok(_) => (),
+                Err(e) => eprintln!("无法启动vim：{}", e),
+            }
+            continue;
+        }
+
         print!("\r");
         io::stdout().flush().unwrap();
     }
