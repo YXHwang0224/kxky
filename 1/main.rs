@@ -37,6 +37,22 @@ fn main() {
             continue;
         }
 
+        // Check for mkdir command
+        if args[0] == "mkdir" {
+            if args.len() < 2 {
+                eprintln!("错误：未提供目录名");
+                continue;
+            }
+            let result = Command::new("mkdir")
+                                .arg(&args[1])
+                                .spawn();
+            match result {
+                Ok(_) => println!("目录创建成功"),
+                Err(e) => eprintln!("无法创建目录：{}", e),
+            }
+            continue;
+        }
+
         print!("\r");
         io::stdout().flush().unwrap();
     }
