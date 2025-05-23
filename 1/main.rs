@@ -23,7 +23,20 @@ fn main() {
             println!("退出程序");
             break;
         }
-        
+
+        if args[0] == "cd" {
+            let target_dir = if args.len() < 2 {
+                dirs::home_dir().unwrap_or(env::current_dir().unwrap())
+            } else {
+                std::path::PathBuf::from(&args[1])
+            };
+
+            if let Err(err) = env::set_current_dir(&target_dir) {
+                eprintln!("错误：{}", err);
+            }
+            continue;
+        }
+
         print!("\r");
         io::stdout().flush().unwrap();
     }
