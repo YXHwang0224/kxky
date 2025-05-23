@@ -14,6 +14,15 @@ fn main() {
 
         let args: Vec<String> = input.trim().split_whitespace().map(String::from).collect();
 
+        if args.is_empty() {
+            eprintln!("错误：未提供命令");
+            continue;
+        }
+
+        if args[0] == "exit" {
+            println!("退出程序");
+            break;
+        }
         
         print!("\r");
         io::stdout().flush().unwrap();
